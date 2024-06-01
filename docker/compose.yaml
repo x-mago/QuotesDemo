@@ -1,0 +1,32 @@
+version: "1.0"
+
+services:
+    db:
+        image: mariadb:11.2.3
+        container_name: database_quotes
+        volumes: 
+            - quotes-db-data:/var/lib/mysql
+        environment:
+            - MARIADB_ROOT_PASSWORD=root
+            - MYSQL_DATABASE=laravel
+            - TZ=Europe/Berlin
+        ports:
+            - 3307:3306
+
+    app:
+        image: laravel-quotes:0.1
+        container_name: laravel_quotes
+        volumes: 
+            - ..\app:/var/www/html/app
+            - ..\public\assets:/var/www/html/public/assets
+            - ..\resources:/var/www/html/resources
+            - ..\routes:/var/www/html/routes
+            - ..\database:/var/www/html/database
+            - ..\storage\app\media:/var/www/html/storage/app/media
+        ports:
+            - 8081:80
+        depends_on:
+            - db
+        
+volumes:
+    quotes-db-data:
