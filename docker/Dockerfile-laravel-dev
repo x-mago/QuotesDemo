@@ -14,7 +14,8 @@ ENV VERSION_OS=${VERSION_OS}
 
 RUN set -x && \
     apt-get update --allow-releaseinfo-change && \
-    apt-get install --no-install-recommends --no-install-suggests -y  bc libbz2-dev libfreetype6-dev libpng-dev libjpeg62-turbo-dev
+    apt-get install --no-install-recommends --no-install-suggests -y  \
+    bc libbz2-dev libfreetype6-dev libpng-dev libjpeg62-turbo-dev libzip-dev zip
 
 RUN set -x && \
     apt-get install --no-install-recommends --no-install-suggests -y git nano procps less nodejs npm
@@ -39,7 +40,7 @@ RUN set -x && \
 #    fi
 
 RUN set -x && \
-    docker-php-ext-install -j$(nproc) bcmath mysqli pdo pdo_mysql bz2 gd exif opcache
+    docker-php-ext-install -j$(nproc) bcmath mysqli pdo pdo_mysql bz2 gd exif opcache zip
 
 RUN set -x && \
     docker-php-source delete && \
@@ -79,13 +80,9 @@ RUN set -x && \
     # if [ $(echo "${VERSION_PHP_MINOR} <= 7" | bc) -eq 1 ]; then \
     #     composer global require hirak/prestissimo ; \
     # fi && \
-    #if [ -f "/var/www/html/composer.lock" ]; then \
-    #    if [ "${APP_ENV}" == "development" ] || [ "${APP_ENV}" == "dev" || "${APP_ENV}" == "staging" ] || [ "${APP_ENV}" == "stage" ]; then \
-    #        #composer install --working-dir=/var/www/html ; \
-    #    else \
-    #        #composer install --no-dev --working-dir=/var/www/html ; \
-    #    fi \
-    #fi && \
+    if [ -f "/var/www/html/composer.lock" ]; then \
+        composer install --working-dir=/var/www/html ; \
+    fi && \
     # resolve: The stream or file "/var/www/html/storage/logs/laravel.log" could not be opened in append mode: failed to open stream: Permission denied
     touch /var/www/html/storage/logs/laravel.log && \
     touch /var/log/cron.log && \
