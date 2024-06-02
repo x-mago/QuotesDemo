@@ -14,7 +14,7 @@ trait CryptFields
             try {
                 $value = Crypt::decrypt($value);
             } catch(\Exception $ex) {
-                $value = $e->getMessage();
+                $value = $ex->getMessage();
             }
             return $value;
         }
