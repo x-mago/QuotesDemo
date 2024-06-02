@@ -85,7 +85,7 @@
                                     </p>
 
                                     <p class="mt-4 text-sm/relaxed">
-                                        <a href="{{ route('dashboard') }}"><i class="bi bi-arrow-right-circle-fill"></i> Hier geht es zum Zitaten-Schatz</a> 
+                                        <a class="underline" href="{{ route('dashboard') }}"><i class="bi bi-arrow-right-circle-fill"></i> Hier geht es zum Zitaten-Schatz</a> 
                                     </p>
                                 </div>
                             </div>

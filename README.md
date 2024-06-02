@@ -19,9 +19,9 @@ docker\startup.cmd
 ```
 
 If your containers are running, point your browser to (http://localhost:8081).
-Please login now with ```name@email.de:password```.
+Please login now with the credentials ```name@email.de:password```.
 
-After successfull login, you will be directed to a page, where the qouotes will be displayed.
+After successfull login, you will be directed to a page, where the quotes are displayed.
 
 ## License
 
