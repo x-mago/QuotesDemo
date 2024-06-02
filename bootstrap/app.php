@@ -21,4 +21,7 @@ return Application::configure(basePath: dirname(__DIR__))
         $exceptions->render(function (\Error $e, Request $request) {
             return response()->view('error-decrypt')->with('error', $e->getMessage());
         });
+        $exceptions->render(function (\Exception $e, Request $request) {
+            return response()->view('error-decrypt')->with('error', $e->getMessage());
+        });
     })->create();

@@ -11,7 +11,11 @@ trait CryptFields
         $value = parent::getAttribute($key);
 
         if (in_array($key, $this->encryptable)) {
-            $value = Crypt::decrypt($value);
+            try {
+                $value = Crypt::decrypt($value);
+            } catch(\Exception $ex) {
+                $value = $e->getMessage();
+            }
             return $value;
         }
         return;
