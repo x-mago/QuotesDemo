@@ -1,4 +1,4 @@
-ARG VERSION=8.3.2-fpm-bookworm-nginx-1.25.4
+ARG VERSION=8.3.4-fpm-bookworm-nginx-1.26.0
 FROM dwchiang/nginx-php-fpm:${VERSION}
 
 LABEL maintainer="Martin Goebel <mago@hsga.de>"
@@ -22,14 +22,7 @@ RUN set -x && \
 RUN set -x && \
         docker-php-ext-configure gd --with-freetype --with-jpeg
 
-#ARG NODE=node-v20.11.1-linux-x64
-#ARG NODE=node-v16.20.2-linux-x64
-#COPY ${NODE}.tar.gz /tmp/
-#RUN set -x && \
-#	cd /usr/local && tar xvfz /tmp/${NODE}.tar.gz && \
-#	cp -ar ${NODE}/* . && \
-#	rm -fr ${NODE} && \
-#	rm /tmp/${NODE}.tar.gz
+
 
 RUN set -x && \
     docker-php-ext-install -j$(nproc) bcmath mysqli pdo pdo_mysql bz2 gd exif opcache zip
@@ -69,10 +62,6 @@ COPY . /var/www/html
 COPY .env.example /var/www/html/.env
 
 RUN set -x && \
-    # We don't need hirak/prestissimo since composer 2
-    # if [ $(echo "${VERSION_PHP_MINOR} <= 7" | bc) -eq 1 ]; then \
-    #     composer global require hirak/prestissimo ; \
-    # fi && \
     if [ -f "/var/www/html/composer.lock" ]; then \
         composer install --working-dir=/var/www/html ; \
     fi && \
