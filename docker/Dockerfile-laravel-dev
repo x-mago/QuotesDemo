@@ -66,6 +66,7 @@ RUN set -x && \
 ### ----------------------------------------------------------
 
 COPY . /var/www/html
+COPY .env.example /var/www/html/.env
 
 RUN set -x && \
     # We don't need hirak/prestissimo since composer 2
