@@ -67,7 +67,7 @@
                                     </svg>
                                 </div>
 
-                                <div class="pt-3 sm:pt-5 min-h-screen">
+                                <div class="pt-3 sm:pt-5 h-fit">
                                     <h2 class="text-xl font-semibold text-black">Zitate</h2>
 
                                     <p class="mt-4 text-sm/relaxed">
