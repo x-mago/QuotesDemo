@@ -23,6 +23,8 @@ Please login now with the following credentials ```name@email.de:password```.
 
 After successfull login, you will be directed to a page, where the quotes are displayed.
 
+The (Architecture-Diagram)[https://github.com/x-mago/QuotesDemo/blob/main/resources/misc/Quotes Architektur.pdf]
+
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
